@@ -47,7 +47,7 @@ export async function runTrivy(): Promise<TrivyResult> {
 
     const trivyOptions: ExecOptions = await getTrivyExecOptions();
     console.log(`Scanning for vulnerabilties in image: ${imageName}`);
-    const trivyToolRunner = new ToolRunner(trivyPath, [trivyCommand, imageName], trivyOptions);
+    const trivyToolRunner = new ToolRunner(trivyPath, [trivyCommand, imageName, "--timeout 5m"], trivyOptions);
     const timestamp = new Date().toISOString();
     const trivyStatus = await trivyToolRunner.exec();
     utils.addLogsToDebug(getTrivyLogPath());
@@ -300,7 +300,7 @@ async function getLatestTrivyVersion(): Promise<string> {
 
         return semver.clean(response.tag_name);
     }, (error) => {
-        core.warning(util.format("Failed to read latest trivy verison from %s. Using default stable version %s", trivyLatestReleaseUrl, stableTrivyVersion));
+        core.warning(util.format("Failed to read latest trivy version from %s. Using default stable version %s", trivyLatestReleaseUrl, stableTrivyVersion));
         return stableTrivyVersion;
     });
 }
@@ -319,7 +319,7 @@ function getTrivyDownloadUrl(trivyVersion: string): string {
     }
 }
 
-async function getTrivyExecOptions() {    
+async function getTrivyExecOptions() {
     const trivyEnv = await getTrivyEnvVariables();
     return {
         env: trivyEnv,
