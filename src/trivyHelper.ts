@@ -47,7 +47,7 @@ export async function runTrivy(): Promise<TrivyResult> {
 
     const trivyOptions: ExecOptions = await getTrivyExecOptions();
     console.log(`Scanning for vulnerabilties in image: ${imageName}`);
-    const trivyToolRunner = new ToolRunner(trivyPath, [trivyCommand, imageName, "--timeout 5m"], trivyOptions);
+    const trivyToolRunner = new ToolRunner(trivyPath, [trivyCommand, imageName], trivyOptions);
     const timestamp = new Date().toISOString();
     const trivyStatus = await trivyToolRunner.exec();
     utils.addLogsToDebug(getTrivyLogPath());

@@ -795,7 +795,7 @@ function runTrivy() {
         const imageName = inputHelper.imageName;
         const trivyOptions = yield getTrivyExecOptions();
         console.log(`Scanning for vulnerabilties in image: ${imageName}`);
-        const trivyToolRunner = new toolrunner_1.ToolRunner(trivyPath, [trivyCommand, imageName, "--timeout 5m"], trivyOptions);
+        const trivyToolRunner = new toolrunner_1.ToolRunner(trivyPath, [trivyCommand, imageName], trivyOptions);
         const timestamp = new Date().toISOString();
         const trivyStatus = yield trivyToolRunner.exec();
         utils.addLogsToDebug(getTrivyLogPath());
