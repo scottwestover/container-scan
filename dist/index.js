@@ -321,7 +321,6 @@ function printFormattedOutput() {
             row.push(cis[KEY_TITLE]);
             row.push(cis[KEY_LEVEL]);
             row.push(cis[KEY_ALERTS][0]);
-            console.log(row);
             rows.push(row);
         }
     });
@@ -897,7 +896,6 @@ function printFormattedOutput() {
         row.push(cve[KEY_DESCRIPTION].replace(/\r/g, '\n'));
         row.push(cve[KEY_TARGET]);
         rows.push(row);
-        console.log(row);
     });
     let widths = [20, 15, 15, 50, 20];
     console.log(table.table(rows, utils.getConfigForTable(widths)));
