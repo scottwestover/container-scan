@@ -894,7 +894,7 @@ function printFormattedOutput() {
         row.push(cve[KEY_VULNERABILITY_ID]);
         row.push(cve[KEY_PACKAGE_NAME]);
         row.push(cve[KEY_SEVERITY]);
-        row.push(cve[KEY_DESCRIPTION]).replace(/\r/g, '\n');
+        row.push(cve[KEY_DESCRIPTION].replace(/\r/g, '\n'));
         row.push(cve[KEY_TARGET]);
         rows.push(row);
         console.log(row);
